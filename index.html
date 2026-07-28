@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ANYARVO — Keep on the Sunny Side</title>
+<meta name="description" content="ANYARVO Sun Stick — sunscreen built for outdoor sports. Three shades: Breeze, Sand, Terra. SPF50+ PA++++. Keep on the sunny side.">
+<meta property="og:title" content="ANYARVO — Keep on the Sunny Side">
+<meta property="og:description" content="Korean outdoor suncare, built for the session. Breeze · Sand · Terra.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#EFEDE7;--panel:#F6F3EC;--ink:#443B31;--soft:#6E6557;--muted:#9C9384;
+    --line:#DCD5C7;--terra:#4A3329;--sand:#C19A6E;--breeze:#B4B9B4;--gold:#D6B36E;--deepgold:#B98E45;
+    --ease:cubic-bezier(.16,1,.3,1);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--paper);color:var(--ink);font-family:'Poppins',-apple-system,sans-serif;font-weight:300;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  ::selection{background:var(--sand);color:#fff}
+  body::after{content:"";position:fixed;inset:0;z-index:3000;pointer-events:none;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");opacity:.045;mix-blend-mode:multiply}
+  .wrap{max-width:1200px;margin:0 auto;padding:0 clamp(22px,5vw,64px)}
+
+  /* Nav */
+  nav{position:fixed;top:0;left:0;right:0;z-index:200;transition:background .5s,border-color .5s;border-bottom:1px solid transparent}
+  nav.solid{background:color-mix(in srgb,var(--paper) 90%,transparent);backdrop-filter:blur(12px);border-color:var(--line)}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:20px clamp(22px,5vw,64px)}
+  .logo{font-weight:600;letter-spacing:.36em;font-size:14px;color:var(--ink);text-decoration:none;z-index:220}
+  .logo{display:inline-flex;align-items:center;height:22px;z-index:220}
+  .logo img{height:100%;width:auto}
+  .logo img.logo-white{display:block}
+  .logo img.logo-dark{display:none}
+  nav.solid .logo img.logo-white{display:none}
+  nav.solid .logo img.logo-dark{display:block}
+  @media(max-width:760px){.logo{height:18px}}
+  .f-mark img{width:min(62vw,620px);height:auto;display:block;margin:0 auto;opacity:.88}
+  .f-mark{transform:none;padding:8px 24px clamp(36px,6vh,60px)}
+
+  .menu{display:flex;gap:clamp(14px,2.4vw,34px);list-style:none}
+  .menu a{text-decoration:none;color:var(--soft);font-size:11px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;position:relative;padding-bottom:3px}
+  .menu a::after{content:"";position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--deepgold);transition:width .3s}
+  .menu a:hover::after,.menu a:focus-visible::after{width:100%}
+  .menu a:hover,.menu a:focus-visible{color:var(--ink)}
+  .menu a:focus-visible{outline:none}
+  .burger{display:none;flex-direction:column;gap:5px;background:none;border:0;cursor:pointer;z-index:220;padding:6px}
+  .burger span{width:24px;height:1.5px;background:var(--ink);transition:.3s}
+  .burger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+  .burger.open span:nth-child(2){opacity:0}
+  .burger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+  @media(max-width:760px){
+    .burger{display:flex}
+    .menu{position:fixed;inset:0;background:var(--paper);flex-direction:column;justify-content:center;align-items:center;gap:30px;transform:translateX(100%);transition:transform .5s var(--ease)}
+    .menu.open{transform:none}
+    .menu a{font-size:16px;letter-spacing:.22em}
+  }
+
+  /* Hero */
+  .hero{position:relative;height:100svh;min-height:600px;overflow:hidden;display:flex;align-items:center}
+  .hero-bg{position:absolute;inset:0;z-index:0;background:url(images/hero.jpg) center 60%/cover no-repeat;background-color:#CDA576}
+  .hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(68,59,49,.24) 0%,transparent 34%,transparent 50%,rgba(68,59,49,.5) 100%)}
+  .hero-inner{position:relative;z-index:2;width:100%;padding:0 clamp(22px,5vw,64px);color:#fff}
+  .hero-tag{font-size:11px;letter-spacing:.32em;text-transform:uppercase;margin-bottom:clamp(20px,3vh,32px);opacity:0;animation:fade 1.2s var(--ease) .3s forwards}
+  .hero h1{font-weight:400;font-size:clamp(40px,7.2vw,98px);line-height:1.02;letter-spacing:-.025em}
+  .hero h1 span{display:block;opacity:0;transform:translateY(38px);animation:reveal 1.3s var(--ease) forwards}
+  .hero h1 span:nth-child(2){animation-delay:.12s}
+  .hero h1 em{font-style:italic;font-weight:300;color:#F4E4C4}
+  .hero-sub{margin-top:clamp(22px,4vh,36px);max-width:42ch;font-size:15.5px;opacity:0;animation:fade 1.2s var(--ease) .9s forwards}
+  @keyframes reveal{to{opacity:1;transform:none}}
+  @keyframes fade{to{opacity:.94}}
+  .cue{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);z-index:2;width:1px;height:44px;background:rgba(255,255,255,.5);overflow:hidden}
+  .cue::after{content:"";position:absolute;top:-100%;left:0;width:100%;height:100%;background:#fff;animation:drop 2s ease-in-out infinite}
+  @keyframes drop{0%{top:-100%}60%,100%{top:100%}}
+
+  .marquee{border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden;padding:16px 0;background:var(--panel)}
+  .mq{display:flex;width:max-content;animation:slide 34s linear infinite}
+  .mq span{font-size:12px;font-weight:500;letter-spacing:.32em;text-transform:uppercase;color:var(--soft);padding:0 30px;white-space:nowrap}
+  .mq i{font-style:normal;color:var(--deepgold);padding-left:30px}
+  @keyframes slide{to{transform:translateX(-50%)}}
+
+  .section{padding:clamp(96px,16vh,180px) 0;position:relative}
+  .kicker{font-size:11px;font-weight:500;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);margin-bottom:clamp(30px,5vh,54px);display:flex;align-items:center;gap:13px}
+  .kicker::before{content:"";width:30px;height:1px;background:var(--deepgold)}
+
+  /* Story */
+  #story{border-top:1px solid var(--line)}
+  .lede{font-weight:300;font-size:clamp(27px,4.4vw,56px);line-height:1.26;letter-spacing:-.015em;max-width:22ch;margin-bottom:clamp(56px,10vh,120px)}
+  .lede em{font-style:italic;color:var(--deepgold)}
+  .story-cols{display:grid;grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr);gap:clamp(38px,6vw,96px)}
+  @media(max-width:820px){.story-cols{grid-template-columns:1fr;gap:34px}}
+  .name-origin{font-size:13.5px;color:var(--muted);line-height:1.95}
+  .name-origin .tag{margin-top:22px;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--deepgold)}
+  .story-body p{color:var(--soft);margin-bottom:24px;max-width:60ch;font-size:16px}
+  .story-body p strong{color:var(--ink);font-weight:500}
+  .story-body p:last-child{margin-bottom:0}
+
+  /* Ambassadors */
+  #ambassadors{border-top:1px solid var(--line)}
+  .amb-intro{font-weight:300;font-size:clamp(22px,3.2vw,38px);line-height:1.3;letter-spacing:-.01em;max-width:26ch;margin-bottom:clamp(48px,8vh,80px)}
+  .amb-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4vw,48px)}
+  @media(max-width:720px){.amb-grid{grid-template-columns:1fr;gap:34px}}
+  .amb{display:flex;flex-direction:column}
+  .amb-photo{aspect-ratio:4/5;background:linear-gradient(160deg,#D8CBB8,#C0AE92 60%,#A2896A);position:relative;overflow:hidden;margin-bottom:22px}
+  .amb-photo span{position:absolute;bottom:14px;left:16px;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.8)}
+  .amb-name{font-weight:500;font-size:20px;letter-spacing:.02em}
+  .amb-sport{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--deepgold);margin:6px 0 14px}
+  .amb-quote{font-size:15px;color:var(--soft);font-style:italic;max-width:42ch}
+  .amb-note{margin-top:clamp(40px,6vh,64px);font-size:12px;letter-spacing:.04em;color:var(--muted);border-top:1px solid var(--line);padding-top:24px}
+
+  /* Products */
+  #products{border-top:1px solid var(--line)}
+  .prod{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);border-top:1px solid var(--line);min-height:76vh}
+  #products .prod:first-of-type{border-top:none}
+  @media(max-width:820px){.prod{grid-template-columns:1fr;min-height:0}}
+  .prod .visual{position:relative;overflow:hidden;min-height:360px}
+  .prod .visual .field{position:absolute;inset:0;transform:scale(1.08);transition:transform 1.5s var(--ease)}
+  .prod.in .visual .field{transform:scale(1)}
+  .prod .visual .lbl{position:absolute;bottom:16px;left:18px;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.7)}
+  .prod.breeze .field{background:url(images/product-breeze.jpg) center/cover no-repeat #E4E4E2}
+  .prod.sand .field{background:url(images/product-sand.jpg) center/cover no-repeat #E7DCC9}
+  .prod.terra .field{background:url(images/product-terra.jpg) center/cover no-repeat #6E6152}
+  .prod .info{padding:clamp(44px,7vh,88px) clamp(24px,4vw,72px);display:flex;flex-direction:column;justify-content:center}
+  .prod:nth-of-type(even) .visual{order:2}
+  @media(max-width:820px){.prod:nth-of-type(even) .visual{order:0}}
+  .p-num{font-size:11px;letter-spacing:.3em;color:var(--deepgold);font-weight:500}
+  .p-name{font-weight:400;text-transform:uppercase;letter-spacing:-.01em;font-size:clamp(50px,6.6vw,100px);line-height:1;margin:12px 0 4px}
+  .p-shade{font-size:12px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);margin-bottom:22px}
+  .p-lead{color:var(--ink);font-size:17px;font-style:italic;max-width:40ch;margin-bottom:24px}
+  .p-tags{display:flex;flex-wrap:wrap;gap:8px 16px;margin-bottom:26px}
+  .p-tags span{font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--deepgold)}
+  .p-bullets{list-style:none;display:flex;flex-direction:column;gap:10px}
+  .p-bullets li{position:relative;padding-left:20px;font-size:14px;color:var(--soft);max-width:44ch}
+  .p-bullets li::before{content:"";position:absolute;left:0;top:8px;width:6px;height:6px;border-radius:50%;background:var(--gold)}
+  .prod.breeze .p-num,.prod.breeze .p-name,.prod.breeze .p-shade,.prod.breeze .p-lead,.prod.breeze .p-tags span,.prod.breeze .p-bullets li{color:var(--ink)}
+  .prod.breeze .p-shade{color:var(--soft)}
+  .prod.breeze .visual .lbl{color:rgba(68,59,49,.5)}
+  .prod.sand .visual .lbl{color:rgba(68,59,49,.5)}
+  .prod.terra .visual .lbl{color:rgba(255,255,255,.75)}
+
+  .band{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--panel)}
+  .band .wrap{padding-top:30px;padding-bottom:30px;display:flex;flex-wrap:wrap;gap:8px 40px;align-items:baseline}
+  .band b{font-size:11px;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:var(--deepgold)}
+  .band span{font-size:13.5px;color:var(--soft)}
+
+  /* How to use */
+  #how{border-top:1px solid var(--line)}
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(20px,3vw,40px);margin-top:20px}
+  @media(max-width:720px){.steps{grid-template-columns:1fr 1fr;gap:30px}}
+  @media(max-width:440px){.steps{grid-template-columns:1fr}}
+  .step .n{font-size:12px;letter-spacing:.2em;color:var(--deepgold);font-weight:500}
+  .step h4{font-weight:500;font-size:16px;margin:12px 0 8px;letter-spacing:-.01em}
+  .step p{font-size:13.5px;color:var(--soft)}
+
+  /* Shop */
+  #shop{border-top:1px solid var(--line)}
+  .shop-lead{font-weight:300;font-size:clamp(26px,4vw,48px);letter-spacing:-.02em;line-height:1.15;max-width:18ch;margin-bottom:clamp(40px,7vh,72px)}
+  .shop-list{list-style:none;border-top:1px solid var(--line)}
+  .shop-list>li>a,.shop-list>li>.soon{display:flex;align-items:baseline;justify-content:space-between;gap:20px;padding:clamp(22px,3.2vh,32px) 4px;border-bottom:1px solid var(--line);text-decoration:none;color:var(--ink);transition:padding-left .4s var(--ease)}
+  .shop-list>li>a:hover{padding-left:22px}
+  .shop-list>li>a:hover .s-name{color:var(--deepgold)}
+  .s-name{font-weight:400;text-transform:uppercase;letter-spacing:.01em;font-size:clamp(22px,3.2vw,40px);transition:color .3s}
+  .s-meta{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+  .s-arrow{font-size:clamp(17px,2.2vw,24px);color:var(--muted)}
+  .shop-list .soon{cursor:default;opacity:.4}
+  .shop-list .soon .s-arrow{font-size:11px;letter-spacing:.22em;text-transform:uppercase}
+  .shopee-countries{padding:20px 4px 8px;display:flex;flex-wrap:wrap;gap:10px 12px;border-bottom:1px solid var(--line)}
+  .shopee-countries a{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);text-decoration:none;border:1px solid var(--line);border-radius:20px;padding:7px 15px;transition:.25s}
+  .shopee-countries a:hover{border-color:var(--deepgold);color:var(--deepgold)}
+  .shopee-head{padding-top:clamp(22px,3.2vh,32px);font-size:clamp(22px,3.2vw,40px);font-weight:400;text-transform:uppercase;letter-spacing:.01em}
+  .shopee-head small{display:block;font-size:11px;letter-spacing:.22em;color:var(--muted);text-transform:uppercase;margin-top:8px;font-weight:300}
+
+  /* Contact */
+  #contact{border-top:1px solid var(--line)}
+  .contact-lead{color:var(--soft);max-width:44ch;font-size:16px}
+  .mail{display:inline-block;margin-top:clamp(28px,5vh,48px);font-weight:300;letter-spacing:-.02em;font-size:clamp(26px,4.6vw,56px);color:var(--ink);text-decoration:none;line-height:1.15;border-bottom:1px solid var(--gold);padding-bottom:6px;transition:color .3s}
+  .mail:hover{color:var(--deepgold)}
+  .chat{margin-top:clamp(32px,5vh,54px);display:inline-flex;align-items:center;gap:12px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
+  .chat::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--gold);animation:pulse 2.4s ease infinite}
+  @keyframes pulse{0%,100%{opacity:.35}50%{opacity:1}}
+  .faq{margin-top:clamp(50px,8vh,88px);display:grid;grid-template-columns:1fr 1fr;gap:30px 60px;border-top:1px solid var(--line);padding-top:clamp(40px,6vh,64px)}
+  @media(max-width:680px){.faq{grid-template-columns:1fr}}
+  .faq dt{font-size:13px;font-weight:500;color:var(--ink);margin-bottom:8px}
+  .faq dd{font-size:13.5px;color:var(--soft)}
+
+  footer{border-top:1px solid var(--line);overflow:hidden;background:var(--panel)}
+  .f-top{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;padding:44px clamp(22px,5vw,64px)}
+  .f-social a{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--soft);text-decoration:none;transition:color .3s}
+  .f-social a:hover{color:var(--deepgold)}
+  .f-meta{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);text-align:right;line-height:2.1}
+  .f-meta a{color:var(--muted);text-decoration:none}
+  .f-mark{font-weight:600;text-transform:uppercase;font-size:clamp(64px,15vw,220px);line-height:.8;text-align:center;color:var(--ink);opacity:.9;transform:translateY(22%);user-select:none;letter-spacing:.01em}
+
+  .r{opacity:0;transform:translateY(28px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
+  .r.in{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    .r,.lede{opacity:1;transform:none;transition:none}
+    .hero h1 span,.hero-tag,.hero-sub{opacity:1;transform:none;animation:none}
+    .cue::after,.mq,.prod .field,.chat::before{animation:none}
+  }
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="nav-inner">
+    <a class="logo" href="#top" aria-label="ANYARVO home"><img class="logo-white" src="images/logo-white.png" alt="ANYARVO"><img class="logo-dark" src="images/logo-dark.png" alt="ANYARVO"></a>
+    <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    <ul class="menu" id="menu">
+      <li><a href="#story">Story</a></li>
+      <li><a href="#ambassadors">Ambassadors</a></li>
+      <li><a href="#products">Products</a></li>
+      <li><a href="#shop">Shop</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section class="hero" id="top">
+  <div class="hero-bg"></div>
+  <div class="hero-inner">
+    <p class="hero-tag">Sunscreen built for outdoor sports</p>
+    <h1><span>Keep on</span><span>the <em>sunny</em> side.</span></h1>
+    <p class="hero-sub">Blazing sun, hours of sweat, whatever your sport. ANYARVO holds its grip — so you can stay out in the light.</p>
+  </div>
+  <span class="cue" aria-hidden="true"></span>
+</section>
+
+<div class="marquee" aria-hidden="true">
+  <div class="mq">
+    <span>Surf<i>·</i></span><span>Run<i>·</i></span><span>Golf<i>·</i></span><span>Tennis<i>·</i></span><span>Cycling<i>·</i></span><span>Keep on the Sunny Side<i>·</i></span>
+    <span>Surf<i>·</i></span><span>Run<i>·</i></span><span>Golf<i>·</i></span><span>Tennis<i>·</i></span><span>Cycling<i>·</i></span><span>Keep on the Sunny Side<i>·</i></span>
+  </div>
+</div>
+
+<!-- STORY -->
+<section class="section" id="story">
+  <div class="wrap">
+    <p class="kicker r">01</p>
+    <p class="lede r">They say the sun is something to avoid.<br>We think it's a backdrop <em>to enjoy.</em></p>
+    <div class="story-cols">
+      <div class="name-origin r">
+        <p>"Arvo" is Australian slang for afternoon. We named ourselves for the hottest hour of the day — 2 p.m. — because we believe even that moment should be one of your brightest.</p>
+        <p class="tag">Any Arvo · Any Afternoon</p>
+      </div>
+      <div class="story-body r">
+        <p>Most sun care treats daylight as the enemy — the cause of spots and ageing, a thing to escape. <strong>We saw it differently.</strong> Sunlight isn't something to run from; it's the beautiful backdrop to a life lived fully, out in the open. So we set out to make sun care for the people who don't come indoors early — the ones who live for the session.</p>
+        <p>That meant getting the fundamentals right and then some. Real protection, SPF50+ PA++++, with a grip that holds through sweat and long hours outside — and a feel light enough that reapplying becomes a pleasure, not a chore. We built it in three finishes, so it fits your skin, your sport, and your day: <strong>Breeze, Sand, and Terra.</strong></p>
+        <p>And because we want these days to last, we made choices that respect the places they happen — reef-friendly formulas for the water you swim over, and care for the coast and the outdoors we all share. <strong>Leave the sun worry to us. You just keep on the sunny side.</strong></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AMBASSADORS -->
+<section class="section" id="ambassadors">
+  <div class="wrap">
+    <p class="kicker r">02</p>
+    <p class="amb-intro r">The people who live in the light — and make ANYARVO part of how they move through their days.</p>
+    <div class="amb-grid">
+      <article class="amb r">
+        <div class="amb-photo"><span>Ambassador photo</span></div>
+        <p class="amb-name">Rosie</p>
+        <p class="amb-sport">[ Sport / Title — TBD ]</p>
+        <p class="amb-quote">&ldquo;[ Ambassador quote to be added ]&rdquo;</p>
+      </article>
+      <article class="amb r">
+        <div class="amb-photo"><span>Ambassador photo</span></div>
+        <p class="amb-name">[ Ambassador 2 ]</p>
+        <p class="amb-sport">[ Sport / Title — TBD ]</p>
+        <p class="amb-quote">&ldquo;[ Ambassador quote to be added ]&rdquo;</p>
+      </article>
+    </div>
+    <p class="amb-note r">※ 자리표시 섹션입니다 — 실제 앰배서더 사진·이름·소개 문구가 확정되면 교체합니다.</p>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section id="products">
+  <div class="wrap section" style="padding-bottom:clamp(30px,5vh,50px)">
+    <p class="kicker r">03</p>
+    <p class="lede r" style="margin-bottom:0">Three shades.<br>Find <em>your</em> finish.</p>
+  </div>
+
+  <article class="prod breeze r">
+    <div class="visual"><div class="field"></div></div>
+    <div class="info">
+      <p class="p-num">No. 01</p>
+      <h3 class="p-name">Breeze</h3>
+      <p class="p-shade">Clear · 20.5g</p>
+      <p class="p-lead">A non-sticky, powdery finish — fresh and light, no oil worries.</p>
+      <div class="p-tags"><span>#ClearGrip</span><span>#InstantMatte</span><span>#DailyAndResort</span><span>#FaceAndBody</span></div>
+      <ul class="p-bullets">
+        <li>For those who love outdoor sports</li>
+        <li>A complete daily sun care essential</li>
+        <li>Flawless, invisible coverage on vacation</li>
+      </ul>
+    </div>
+  </article>
+
+  <article class="prod sand r">
+    <div class="visual"><div class="field"></div></div>
+    <div class="info">
+      <p class="p-num">No. 02</p>
+      <h3 class="p-name">Sand</h3>
+      <p class="p-shade">No.22 · 24g</p>
+      <p class="p-lead">The natural glow you won't sacrifice — even under the blazing sun.</p>
+      <div class="p-tags"><span>#WaterSports</span><span>#BeginnerFriendly</span><span>#ResortMakeup</span></div>
+      <ul class="p-bullets">
+        <li>A light touch of color for days in the water, with grip that won't wash away</li>
+        <li>Radiant, flawless skin through outdoor activity (No.22)</li>
+        <li>Reef-safe ingredients, with nature in mind</li>
+      </ul>
+    </div>
+  </article>
+
+  <article class="prod terra r">
+    <div class="visual"><div class="field"></div></div>
+    <div class="info">
+      <p class="p-num">No. 03</p>
+      <h3 class="p-name">Terra</h3>
+      <p class="p-shade">No.26-7 · 24g</p>
+      <p class="p-lead">The perfect color for sun-kissed, tanned skin.</p>
+      <div class="p-tags"><span>#WaterSports</span><span>#ForTannedSkin</span><span>#OutdoorSportsSpecialist</span></div>
+      <ul class="p-bullets">
+        <li>Built to grip through hours of sweat on all-day sessions</li>
+        <li>A natural-looking bronze for deeper, sun-tanned tones (No.26-7)</li>
+        <li>Reef-safe ingredients, with nature in mind</li>
+      </ul>
+    </div>
+  </article>
+
+  <div class="band">
+    <div class="wrap">
+      <b>Tested &amp; Certified</b>
+      <span>SPF50+ · PA++++, confirmed through testing to Korean functional-cosmetic standards. Reef-safe: Sand &amp; Terra (free of oxybenzone and octinoxate). Oxybenzone-free across all shades.</span>
+    </div>
+  </div>
+</section>
+
+
+<!-- SHOP -->
+<section class="section" id="shop">
+  <div class="wrap">
+    <p class="kicker r">04</p>
+    <p class="shop-lead r">Find ANYARVO wherever you shop.</p>
+    <ul class="shop-list r">
+      <li><a href="https://smartstore.naver.com/anyarvo/products/13563599678" target="_blank" rel="noopener"><span class="s-name">Naver Smart Store</span><span class="s-meta">Korea</span><span class="s-arrow">↗</span></a></li>
+      <li>
+        <div class="shopee-head">Shopee <small>Select your country</small></div>
+        <div class="shopee-countries">
+          <a href="https://bit.ly/3TKr7DE" target="_blank" rel="noopener">Singapore</a>
+          <a href="https://bit.ly/3TKr9eK" target="_blank" rel="noopener">Taiwan</a>
+          <a href="https://bit.ly/4hoAoLu" target="_blank" rel="noopener">Malaysia</a>
+          <a href="https://bit.ly/4pwbxr2" target="_blank" rel="noopener">Vietnam</a>
+          <a href="https://bit.ly/3Tg7FP2" target="_blank" rel="noopener">Philippines</a>
+          <a href="https://bit.ly/4wlDW68" target="_blank" rel="noopener">Brazil</a>
+          <a href="https://bit.ly/4wgPEij" target="_blank" rel="noopener">Mexico</a>
+        </div>
+      </li>
+      <li><div class="soon"><span class="s-name">Amazon</span><span class="s-meta">US</span><span class="s-arrow">Coming soon</span></div></li>
+    </ul>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section" id="contact">
+  <div class="wrap">
+    <p class="kicker r">05</p>
+    <p class="contact-lead r">Questions about shades, shipping or stockists — or wholesale and press. Write to us and we'll get back to you.</p>
+    <a class="mail r" href="mailto:hello@anyarvo.com">hello@anyarvo.com</a>
+    <p class="chat r">AI assistant coming soon — instant answers, any hour you're out</p>
+  </div>
+</section>
+
+<footer>
+  <div class="f-top">
+    <div class="f-social"><a href="https://instagram.com/anyarvo__" target="_blank" rel="noopener">Instagram ↗ @anyarvo__</a></div>
+    <div class="f-meta">
+      <p>© 2026 ANYARVO · JNV Company</p>
+      <p><a href="mailto:hello@anyarvo.com">hello@anyarvo.com</a></p>
+      <p>Korean Outdoor Suncare · Made in Korea</p>
+    </div>
+  </div>
+  <div class="f-mark"><img src="images/logo-dark.png" alt="ANYARVO"></div>
+</footer>
+
+<script>
+  const nav=document.getElementById('nav'),hero=document.getElementById('top');
+  const onScroll=()=>nav.classList.toggle('solid',scrollY>hero.offsetHeight-90);
+  addEventListener('scroll',onScroll,{passive:true});onScroll();
+  const burger=document.getElementById('burger'),menu=document.getElementById('menu');
+  burger.addEventListener('click',()=>{const o=menu.classList.toggle('open');burger.classList.toggle('open',o);burger.setAttribute('aria-expanded',o)});
+  menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{menu.classList.remove('open');burger.classList.remove('open');burger.setAttribute('aria-expanded','false')}));
+  const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.16});
+  document.querySelectorAll('.r,.prod').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
