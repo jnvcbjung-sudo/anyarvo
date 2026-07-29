@@ -99,14 +99,20 @@
   /* Ambassadors */
   #ambassadors{border-top:1px solid var(--line)}
   .amb-intro{font-weight:300;font-size:clamp(22px,3.2vw,38px);line-height:1.3;letter-spacing:-.01em;max-width:26ch;margin-bottom:clamp(48px,8vh,80px)}
-  .amb-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4vw,48px)}
-  @media(max-width:720px){.amb-grid{grid-template-columns:1fr;gap:34px}}
-  .amb{display:flex;flex-direction:column}
-  .amb-photo{aspect-ratio:4/5;background:linear-gradient(160deg,#D8CBB8,#C0AE92 60%,#A2896A);position:relative;overflow:hidden;margin-bottom:22px}
-  .amb-photo span{position:absolute;bottom:14px;left:16px;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.8)}
-  .amb-name{font-weight:500;font-size:20px;letter-spacing:.02em}
-  .amb-sport{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--deepgold);margin:6px 0 14px}
-  .amb-quote{font-size:15px;color:var(--soft);font-style:italic;max-width:42ch}
+  .amb-marquee{position:relative;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}
+  .amb-track{display:flex;gap:clamp(14px,1.8vw,26px);width:max-content;animation:amb-scroll 55s linear infinite}
+  .amb-marquee:hover .amb-track{animation-play-state:paused}
+  @keyframes amb-scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  .amb{flex:0 0 auto;width:clamp(150px,20vw,220px);display:block;text-decoration:none;color:inherit}
+  .amb-photo{aspect-ratio:4/5;background:linear-gradient(160deg,#D8CBB8,#C0AE92 60%,#A2896A);position:relative;overflow:hidden;margin-bottom:12px}
+  .amb-photo img,.amb-photo video{width:100%;height:100%;object-fit:cover;display:block;transition:transform .55s cubic-bezier(.2,.7,.2,1)}
+  .amb:hover .amb-photo img,.amb:hover .amb-photo video{transform:scale(1.05)}
+  .amb-photo::after{content:"";position:absolute;inset:0;background:rgba(74,51,41,0);transition:background .3s}
+  .amb:hover .amb-photo::after{background:rgba(74,51,41,.14)}
+  .amb-photo::before{content:"";position:absolute;top:10px;right:10px;width:20px;height:20px;z-index:2;opacity:0;transform:translateY(-3px);transition:opacity .3s,transform .3s;filter:drop-shadow(0 1px 2px rgba(0,0,0,.45));background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round'%3E%3Crect x='2.5' y='2.5' width='19' height='19' rx='5.5'/%3E%3Ccircle cx='12' cy='12' r='4.2'/%3E%3Ccircle cx='17.6' cy='6.4' r='1.1' fill='white' stroke='none'/%3E%3C/svg%3E") center/contain no-repeat}
+  .amb:hover .amb-photo::before{opacity:1;transform:translateY(0)}
+  .amb-handle{font-size:12px;letter-spacing:.03em;color:var(--deepgold);text-align:center}
+  @media(prefers-reduced-motion:reduce){.amb-track{animation:none}.amb-marquee{overflow-x:auto}}
   .amb-note{margin-top:clamp(40px,6vh,64px);font-size:12px;letter-spacing:.04em;color:var(--muted);border-top:1px solid var(--line);padding-top:24px}
 
   /* Products */
@@ -259,21 +265,25 @@
   <div class="wrap">
     <p class="kicker r">02</p>
     <p class="amb-intro r">The people who live in the light — and make ANYARVO part of how they move through their days.</p>
-    <div class="amb-grid">
-      <article class="amb r">
-        <div class="amb-photo"><span>Ambassador photo</span></div>
-        <p class="amb-name">Rosie</p>
-        <p class="amb-sport">[ Sport / Title — TBD ]</p>
-        <p class="amb-quote">&ldquo;[ Ambassador quote to be added ]&rdquo;</p>
-      </article>
-      <article class="amb r">
-        <div class="amb-photo"><span>Ambassador photo</span></div>
-        <p class="amb-name">[ Ambassador 2 ]</p>
-        <p class="amb-sport">[ Sport / Title — TBD ]</p>
-        <p class="amb-quote">&ldquo;[ Ambassador quote to be added ]&rdquo;</p>
-      </article>
+    <div class="amb-marquee r">
+      <div class="amb-track" id="ambTrack">
+        <!-- AMBASSADOR TEMPLATE — one block per person (order = display order):
+        <a class="amb" href="https://instagram.com/HANDLE" target="_blank" rel="noopener">
+          <div class="amb-photo"><img src="images/ambassadors/HANDLE.jpg" alt="@HANDLE" loading="lazy"></div>
+          <p class="amb-handle">@HANDLE</p>
+        </a>
+        -->
+        <a class="amb" href="https://instagram.com/rosiejaffurs/" target="_blank" rel="noopener"><div class="amb-photo"><video src="images/ambassadors/rosiejaffurs.mp4" poster="images/ambassadors/rosiejaffurs.jpg" autoplay muted loop playsinline preload="metadata"></video></div><p class="amb-handle">@rosiejaffurs</p></a>
+        <a class="amb" href="https://instagram.com/anyarvo__" target="_blank" rel="noopener"><div class="amb-photo"></div><p class="amb-handle">@handle_02</p></a>
+        <a class="amb" href="https://instagram.com/anyarvo__" target="_blank" rel="noopener"><div class="amb-photo"></div><p class="amb-handle">@handle_03</p></a>
+        <a class="amb" href="https://instagram.com/anyarvo__" target="_blank" rel="noopener"><div class="amb-photo"></div><p class="amb-handle">@handle_04</p></a>
+        <a class="amb" href="https://instagram.com/anyarvo__" target="_blank" rel="noopener"><div class="amb-photo"></div><p class="amb-handle">@handle_05</p></a>
+        <a class="amb" href="https://instagram.com/anyarvo__" target="_blank" rel="noopener"><div class="amb-photo"></div><p class="amb-handle">@handle_06</p></a>
+        <a class="amb" href="https://instagram.com/anyarvo__" target="_blank" rel="noopener"><div class="amb-photo"></div><p class="amb-handle">@handle_07</p></a>
+        <a class="amb" href="https://instagram.com/anyarvo__" target="_blank" rel="noopener"><div class="amb-photo"></div><p class="amb-handle">@handle_08</p></a>
+      </div>
     </div>
-    <p class="amb-note r">※ 자리표시 섹션입니다 — 실제 앰배서더 사진·이름·소개 문구가 확정되면 교체합니다.</p>
+    <p class="amb-note r">※ 자리표시 섹션입니다 — 실제 앰배서더 사진·인스타 계정이 확정되면 교체하며, 사진을 클릭하면 각 인스타로 연결됩니다.</p>
   </div>
 </section>
 
@@ -371,7 +381,6 @@
     <p class="kicker r">05</p>
     <p class="contact-lead r">Questions about shades, shipping or stockists — or wholesale and press. Write to us and we'll get back to you.</p>
     <a class="mail r" href="mailto:hello@anyarvo.com">hello@anyarvo.com</a>
-    <p class="chat r">AI assistant coming soon — instant answers, any hour you're out</p>
   </div>
 </section>
 
@@ -396,6 +405,8 @@
   menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{menu.classList.remove('open');burger.classList.remove('open');burger.setAttribute('aria-expanded','false')}));
   const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.16});
   document.querySelectorAll('.r,.prod').forEach(el=>io.observe(el));
+  // Ambassadors marquee: adapt speed to count, then duplicate set for a seamless loop
+  (function(){const t=document.getElementById('ambTrack');if(!t)return;const items=t.querySelectorAll('.amb');if(!items.length)return;t.style.animationDuration=(items.length*3.5)+'s';items.forEach(el=>t.appendChild(el.cloneNode(true)));t.querySelectorAll('video').forEach(v=>{v.muted=true;const p=v.play();if(p&&p.catch)p.catch(()=>{})})})();
 </script>
 </body>
 </html>
