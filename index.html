@@ -45,6 +45,9 @@
   .menu a:hover::after,.menu a:focus-visible::after{width:100%}
   .menu a:hover,.menu a:focus-visible{color:var(--ink)}
   .menu a:focus-visible{outline:none}
+  .nav-ig a{display:inline-flex;align-items:center;padding-bottom:0;color:var(--soft)}
+  .nav-ig a::after{display:none}
+  .nav-ig a:hover,.nav-ig a:focus-visible{color:var(--deepgold)}
   .burger{display:none;flex-direction:column;gap:5px;background:none;border:0;cursor:pointer;z-index:220;padding:6px}
   .burger span{width:24px;height:1.5px;background:var(--ink);transition:.3s}
   .burger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
@@ -113,6 +116,11 @@
   .amb:hover .amb-photo::before{opacity:1;transform:translateY(0)}
   .amb-handle{font-size:12px;letter-spacing:.03em;color:var(--deepgold);text-align:center}
   @media(prefers-reduced-motion:reduce){.amb-track{animation:none}.amb-marquee{overflow-x:auto}}
+  .amb-cta{display:inline-flex;align-items:center;gap:12px;margin-top:clamp(40px,6vh,64px);text-decoration:none;color:var(--ink);border:1px solid var(--line);border-radius:30px;padding:13px 24px;transition:border-color .3s}
+  .amb-cta:hover{border-color:var(--deepgold)}
+  .amb-cta svg{flex:0 0 auto}
+  .amb-cta span{font-size:13px;letter-spacing:.02em}
+  .amb-cta-handle{color:var(--deepgold);font-weight:500}
   .amb-note{margin-top:clamp(40px,6vh,64px);font-size:12px;letter-spacing:.04em;color:var(--muted);border-top:1px solid var(--line);padding-top:24px}
 
   /* Products */
@@ -176,6 +184,10 @@
   .shopee-countries a:hover{border-color:var(--deepgold);color:var(--deepgold)}
   .shopee-head{padding-top:clamp(22px,3.2vh,32px);font-size:clamp(22px,3.2vw,40px);font-weight:400;text-transform:uppercase;letter-spacing:.01em}
   .shopee-head small{display:block;font-size:11px;letter-spacing:.22em;color:var(--muted);text-transform:uppercase;margin-top:8px;font-weight:300}
+  .s-logo{display:inline-flex;align-items:center;color:var(--ink);transition:color .3s}
+  .s-logo svg{height:clamp(30px,4.4vw,46px);width:auto;display:block}
+  .shop-list>li>a:hover .s-logo{color:var(--deepgold)}
+  .shopee-head:hover .s-logo{color:var(--deepgold)}
 
   /* Contact */
   #contact{border-top:1px solid var(--line)}
@@ -192,7 +204,8 @@
 
   footer{border-top:1px solid var(--line);overflow:hidden;background:var(--panel)}
   .f-top{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;padding:44px clamp(22px,5vw,64px)}
-  .f-social a{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--soft);text-decoration:none;transition:color .3s}
+  .f-social a{display:inline-flex;align-items:center;gap:10px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--soft);text-decoration:none;transition:color .3s}
+  .f-social svg{flex:0 0 auto}
   .f-social a:hover{color:var(--deepgold)}
   .f-meta{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);text-align:right;line-height:2.1}
   .f-meta a{color:var(--muted);text-decoration:none}
@@ -220,6 +233,7 @@
       <li><a href="#products">Products</a></li>
       <li><a href="#shop">Shop</a></li>
       <li><a href="#contact">Contact</a></li>
+      <li class="nav-ig"><a href="https://instagram.com/anyarvo__" target="_blank" rel="noopener" aria-label="ANYARVO Instagram"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.6" cy="6.4" r="1.1" fill="currentColor" stroke="none"/></svg></a></li>
     </ul>
   </div>
 </nav>
@@ -273,7 +287,7 @@
           <p class="amb-handle">@HANDLE</p>
         </a>
         -->
-        <a class="amb" href="https://instagram.com/rosiejaffurs/" target="_blank" rel="noopener"><div class="amb-photo"><video src="images/ambassadors/rosiejaffurs.mp4" poster="images/ambassadors/rosiejaffurs.jpg" autoplay muted loop playsinline preload="metadata"></video></div><p class="amb-handle">@rosiejaffurs</p></a>
+        <a class="amb" href="https://instagram.com/anyarvo__" target="_blank" rel="noopener"><div class="amb-photo"></div><p class="amb-handle">@handle_01</p></a>
         <a class="amb" href="https://instagram.com/anyarvo__" target="_blank" rel="noopener"><div class="amb-photo"></div><p class="amb-handle">@handle_02</p></a>
         <a class="amb" href="https://instagram.com/anyarvo__" target="_blank" rel="noopener"><div class="amb-photo"></div><p class="amb-handle">@handle_03</p></a>
         <a class="amb" href="https://instagram.com/anyarvo__" target="_blank" rel="noopener"><div class="amb-photo"></div><p class="amb-handle">@handle_04</p></a>
@@ -283,7 +297,7 @@
         <a class="amb" href="https://instagram.com/anyarvo__" target="_blank" rel="noopener"><div class="amb-photo"></div><p class="amb-handle">@handle_08</p></a>
       </div>
     </div>
-    <p class="amb-note r">※ 자리표시 섹션입니다 — 실제 앰배서더 사진·인스타 계정이 확정되면 교체하며, 사진을 클릭하면 각 인스타로 연결됩니다.</p>
+    <a class="amb-cta r" href="https://instagram.com/anyarvo__" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.6" cy="6.4" r="1.1" fill="currentColor" stroke="none"/></svg><span>Follow the days on Instagram</span><span class="amb-cta-handle">@anyarvo__</span></a>
   </div>
 </section>
 
@@ -357,9 +371,9 @@
     <p class="kicker r">04</p>
     <p class="shop-lead r">Find ANYARVO wherever you shop.</p>
     <ul class="shop-list r">
-      <li><a href="https://smartstore.naver.com/anyarvo/products/13563599678" target="_blank" rel="noopener"><span class="s-name">Naver Smart Store</span><span class="s-meta">Korea</span><span class="s-arrow">↗</span></a></li>
+      <li><a href="https://smartstore.naver.com/anyarvo/products/13563599678" target="_blank" rel="noopener"><span class="s-logo" aria-label="Naver Smart Store"><svg viewBox="0 0 40 40" fill="none"><rect x="1.6" y="1.6" width="36.8" height="36.8" rx="9" stroke="currentColor" stroke-width="2"/><path d="M11,11 h5 l9,11 V11 h5 v18 h-5 l-9,-11 V29 h-5 Z" fill="currentColor"/></svg></span><span class="s-meta">Korea</span><span class="s-arrow">↗</span></a></li>
       <li>
-        <div class="shopee-head">Shopee <small>Select your country</small></div>
+        <div class="shopee-head"><span class="s-logo" aria-label="Shopee"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10,15 h20 l-1.4,18.5 a2.2,2.2 0 0 1 -2.2,2 h-10.8 a2.2,2.2 0 0 1 -2.2,-2 Z"/><path d="M15.5,15.5 v-2.5 a4.5,4.5 0 0 1 9,0 v2.5"/><path d="M23,22.5 a3.2,2.6 0 0 0 -6,0.6 c0,3 6,1.9 6,5 a3.2,2.6 0 0 1 -6,0.3"/></svg></span><small>Select your country</small></div>
         <div class="shopee-countries">
           <a href="https://bit.ly/3TKr7DE" target="_blank" rel="noopener">Singapore</a>
           <a href="https://bit.ly/3TKr9eK" target="_blank" rel="noopener">Taiwan</a>
@@ -386,7 +400,7 @@
 
 <footer>
   <div class="f-top">
-    <div class="f-social"><a href="https://instagram.com/anyarvo__" target="_blank" rel="noopener">Instagram ↗ @anyarvo__</a></div>
+    <div class="f-social"><a href="https://instagram.com/anyarvo__" target="_blank" rel="noopener" aria-label="ANYARVO Instagram @anyarvo__"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.6" cy="6.4" r="1.1" fill="currentColor" stroke="none"/></svg><span>@anyarvo__</span></a></div>
     <div class="f-meta">
       <p>© 2026 ANYARVO · JNV Company</p>
       <p><a href="mailto:hello@anyarvo.com">hello@anyarvo.com</a></p>
