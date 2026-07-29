@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>document.documentElement.classList.add('js')</script>
 <title>ANYARVO — Keep on the Sunny Side</title>
 <meta name="description" content="ANYARVO Sun Stick — sunscreen built for outdoor sports. Three shades: Breeze, Sand, Terra. SPF50+ PA++++. Keep on the sunny side.">
 <meta property="og:title" content="ANYARVO — Keep on the Sunny Side">
@@ -26,7 +27,7 @@
 
   /* Nav */
   nav{position:fixed;top:0;left:0;right:0;z-index:200;transition:background .5s,border-color .5s;border-bottom:1px solid transparent}
-  nav.solid{background:color-mix(in srgb,var(--paper) 90%,transparent);backdrop-filter:blur(12px);border-color:var(--line)}
+  nav.solid{background:var(--panel);background:color-mix(in srgb,var(--paper) 90%,transparent);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-color:var(--line)}
   .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:20px clamp(22px,5vw,64px)}
   .logo{font-weight:600;letter-spacing:.36em;font-size:14px;color:var(--ink);text-decoration:none;z-index:220}
   .logo{display:inline-flex;align-items:center;height:22px;z-index:220}
@@ -65,12 +66,15 @@
   .hero-bg{position:absolute;inset:0;z-index:0;background:url(images/hero.jpg) center 60%/cover no-repeat;background-color:#CDA576}
   .hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(68,59,49,.24) 0%,transparent 34%,transparent 50%,rgba(68,59,49,.5) 100%)}
   .hero-inner{position:relative;z-index:2;width:100%;padding:0 clamp(22px,5vw,64px);color:#fff}
-  .hero-tag{font-size:11px;letter-spacing:.32em;text-transform:uppercase;margin-bottom:clamp(20px,3vh,32px);opacity:0;animation:fade 1.2s var(--ease) .3s forwards}
+  .hero-tag{font-size:11px;letter-spacing:.32em;text-transform:uppercase;margin-bottom:clamp(20px,3vh,32px)}
+  .js .hero-tag{opacity:0;animation:fade 1.2s var(--ease) .3s forwards}
   .hero h1{font-weight:400;font-size:clamp(40px,7.2vw,98px);line-height:1.02;letter-spacing:-.025em}
-  .hero h1 span{display:block;opacity:0;transform:translateY(38px);animation:reveal 1.3s var(--ease) forwards}
+  .hero h1 span{display:block}
+  .js .hero h1 span{opacity:0;transform:translateY(38px);animation:reveal 1.3s var(--ease) forwards}
   .hero h1 span:nth-child(2){animation-delay:.12s}
   .hero h1 em{font-style:italic;font-weight:300;color:#F4E4C4}
-  .hero-sub{margin-top:clamp(22px,4vh,36px);max-width:42ch;font-size:15.5px;opacity:0;animation:fade 1.2s var(--ease) .9s forwards}
+  .hero-sub{margin-top:clamp(22px,4vh,36px);max-width:42ch;font-size:15.5px}
+  .js .hero-sub{opacity:0;animation:fade 1.2s var(--ease) .9s forwards}
   @keyframes reveal{to{opacity:1;transform:none}}
   @keyframes fade{to{opacity:.94}}
   .cue{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);z-index:2;width:1px;height:44px;background:rgba(255,255,255,.5);overflow:hidden}
@@ -211,8 +215,8 @@
   .f-meta a{color:var(--muted);text-decoration:none}
   .f-mark{font-weight:600;text-transform:uppercase;font-size:clamp(64px,15vw,220px);line-height:.8;text-align:center;color:var(--ink);opacity:.9;transform:translateY(22%);user-select:none;letter-spacing:.01em}
 
-  .r{opacity:0;transform:translateY(28px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
-  .r.in{opacity:1;transform:none}
+  .js .r{opacity:0;transform:translateY(28px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
+  .js .r.in{opacity:1;transform:none}
   @media(prefers-reduced-motion:reduce){
     html{scroll-behavior:auto}
     .r,.lede{opacity:1;transform:none;transition:none}
