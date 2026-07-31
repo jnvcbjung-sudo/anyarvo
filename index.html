@@ -198,6 +198,21 @@
   .contact-lead{color:var(--soft);max-width:44ch;font-size:16px}
   .mail{display:inline-block;margin-top:clamp(28px,5vh,48px);font-weight:300;letter-spacing:-.02em;font-size:clamp(26px,4.6vw,56px);color:var(--ink);text-decoration:none;line-height:1.15;border-bottom:1px solid var(--gold);padding-bottom:6px;transition:color .3s}
   .mail:hover{color:var(--deepgold)}
+  .contact-form{max-width:620px;margin-top:clamp(34px,6vh,56px)}
+  .cf-row{display:flex;gap:clamp(18px,3vw,34px)}
+  @media(max-width:600px){.cf-row{flex-direction:column;gap:0}}
+  .cf-field{flex:1;margin-bottom:26px}
+  .cf-field label{display:block;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:9px}
+  .cf-field input,.cf-field textarea{width:100%;background:transparent;border:0;border-bottom:1px solid var(--line);padding:8px 2px;font-family:inherit;font-size:16px;font-weight:300;color:var(--ink);transition:border-color .3s}
+  .cf-field textarea{resize:vertical;min-height:96px;line-height:1.6}
+  .cf-field input:focus,.cf-field textarea:focus{outline:none;border-color:var(--deepgold)}
+  .cf-hp{position:absolute!important;left:-9999px;width:0;height:0;opacity:0}
+  .cf-submit{margin-top:8px;background:transparent;border:1px solid var(--line);border-radius:30px;padding:13px 28px;font-family:inherit;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);cursor:pointer;transition:border-color .3s,color .3s}
+  .cf-submit:hover{border-color:var(--deepgold);color:var(--deepgold)}
+  .cf-submit:disabled{opacity:.45;cursor:default}
+  .cf-status{margin-top:20px;font-size:13.5px;letter-spacing:.01em;color:var(--soft);min-height:1.2em}
+  .cf-status.ok{color:var(--deepgold)}
+  .cf-status.err{color:#A8432E}
   .chat{margin-top:clamp(32px,5vh,54px);display:inline-flex;align-items:center;gap:12px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
   .chat::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--gold);animation:pulse 2.4s ease infinite}
   @keyframes pulse{0%,100%{opacity:.35}50%{opacity:1}}
@@ -395,7 +410,29 @@
   <div class="wrap">
     <p class="kicker r">05</p>
     <p class="contact-lead r">Questions about shades, shipping or stockists — or wholesale and press. Write to us and we'll get back to you.</p>
-    <a class="mail r" href="mailto:hello@anyarvo.com">hello@anyarvo.com</a>
+    <form class="contact-form r" id="contactForm" novalidate>
+      <!-- Web3Forms access key for jnv.main@gmail.com goes in value="" below -->
+      <input type="hidden" name="access_key" value="b78db935-80db-432f-8d05-550679562a61">
+      <input type="hidden" name="subject" value="New inquiry from anyarvo.com">
+      <input type="hidden" name="from_name" value="ANYARVO Website">
+      <input type="checkbox" name="botcheck" class="cf-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <div class="cf-row">
+        <div class="cf-field">
+          <label for="cf-name">Name</label>
+          <input id="cf-name" type="text" name="name" required autocomplete="name">
+        </div>
+        <div class="cf-field">
+          <label for="cf-email">Email</label>
+          <input id="cf-email" type="email" name="email" required autocomplete="email">
+        </div>
+      </div>
+      <div class="cf-field">
+        <label for="cf-message">Message</label>
+        <textarea id="cf-message" name="message" rows="4" required></textarea>
+      </div>
+      <button type="submit" class="cf-submit">Send message <span aria-hidden="true">↗</span></button>
+      <p class="cf-status" id="cfStatus" role="status" aria-live="polite"></p>
+    </form>
   </div>
 </section>
 
@@ -404,7 +441,7 @@
     <div class="f-social"><a href="https://instagram.com/anyarvo__" target="_blank" rel="noopener" aria-label="ANYARVO Instagram @anyarvo__"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.6" cy="6.4" r="1.1" fill="currentColor" stroke="none"/></svg><span>@anyarvo__</span></a></div>
     <div class="f-meta">
       <p>© 2026 ANYARVO · JNV Company</p>
-      <p><a href="mailto:hello@anyarvo.com">hello@anyarvo.com</a></p>
+      <p><a href="#contact">Get in touch</a></p>
       <p>Korean Outdoor Suncare · Made in Korea</p>
     </div>
   </div>
@@ -422,6 +459,17 @@
   document.querySelectorAll('.r,.prod').forEach(el=>io.observe(el));
   // Ambassadors marquee: adapt speed to count, then duplicate set for a seamless loop
   (function(){const t=document.getElementById('ambTrack');if(!t)return;const items=t.querySelectorAll('.amb');if(!items.length)return;t.style.animationDuration=(items.length*3.5)+'s';items.forEach(el=>t.appendChild(el.cloneNode(true)));t.querySelectorAll('video').forEach(v=>{v.muted=true;const p=v.play();if(p&&p.catch)p.catch(()=>{})})})();
+  // Contact form: AJAX submit to Web3Forms, inline status (no page reload)
+  (function(){const cf=document.getElementById('contactForm');if(!cf)return;const status=document.getElementById('cfStatus'),btn=cf.querySelector('.cf-submit');
+    cf.addEventListener('submit',async e=>{e.preventDefault();
+      if(!cf.checkValidity()){status.className='cf-status err';status.textContent='Please fill in your name, a valid email, and a message.';return;}
+      status.className='cf-status';status.textContent='Sending…';btn.disabled=true;
+      try{const res=await fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Accept':'application/json'},body:new FormData(cf)});const data=await res.json();
+        if(data.success){cf.reset();status.className='cf-status ok';status.textContent='Thank you — your message is on its way. We’ll get back to you soon.';}
+        else{status.className='cf-status err';status.textContent='Sorry, something went wrong. Please try again in a moment.';}
+      }catch(err){status.className='cf-status err';status.textContent='Network error — please check your connection and try again.';}
+      finally{btn.disabled=false;}
+    });})();
 </script>
 </body>
 </html>
