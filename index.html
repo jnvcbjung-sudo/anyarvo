@@ -469,9 +469,9 @@
       vids.forEach(v=>io.observe(v));
     }else{vids.forEach(v=>{visible.add(v);play(v)})}
     vids.forEach(v=>['loadeddata','canplay'].forEach(ev=>v.addEventListener(ev,()=>{if(visible.has(v))play(v)})));
-    // Unlock playback on first user gesture (some in-app browsers block autoplay until then)
-    const unlock=()=>visible.forEach(play);
-    ['touchstart','pointerdown','scroll','click'].forEach(ev=>window.addEventListener(ev,unlock,{once:true,passive:true}));
+    // Keep attempting playback during user interaction (in-app browsers that gate autoplay behind a gesture)
+    let last=0;const onInteract=()=>{const n=Date.now();if(n-last<400)return;last=n;visible.forEach(play)};
+    ['touchstart','touchmove','pointerdown','scroll','click'].forEach(ev=>window.addEventListener(ev,onInteract,{passive:true}));
   })();
   // Contact form: AJAX submit to Web3Forms, inline status (no page reload)
   (function(){const cf=document.getElementById('contactForm');if(!cf)return;const status=document.getElementById('cfStatus'),btn=cf.querySelector('.cf-submit');
