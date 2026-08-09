@@ -306,11 +306,11 @@
           <p class="amb-handle">@HANDLE</p>
         </a>
         -->
-        <a class="amb" href="https://instagram.com/rosiejaffurs/" target="_blank" rel="noopener"><div class="amb-photo"><video src="images/ambassadors/rosiejaffurs.mp4" poster="images/ambassadors/rosiejaffurs.jpg" autoplay muted loop playsinline preload="metadata"></video></div><p class="amb-handle">@rosiejaffurs</p></a>
-        <a class="amb" href="https://www.instagram.com/brooklynhawaii" target="_blank" rel="noopener"><div class="amb-photo"><video src="images/ambassadors/brooklynhawaii.mp4" poster="images/ambassadors/brooklynhawaii.jpg" autoplay muted loop playsinline preload="metadata"></video></div><p class="amb-handle">@brooklynhawaii</p></a>
-        <a class="amb" href="https://instagram.com/jomaebueza/" target="_blank" rel="noopener"><div class="amb-photo"><video src="images/ambassadors/jomaebueza.mp4" poster="images/ambassadors/jomaebueza.jpg" autoplay muted loop playsinline preload="metadata"></video></div><p class="amb-handle">@jomaebueza</p></a>
-        <a class="amb" href="https://instagram.com/edenedwards/" target="_blank" rel="noopener"><div class="amb-photo"><video src="images/ambassadors/edenedwards.mp4" poster="images/ambassadors/edenedwards.jpg" autoplay muted loop playsinline preload="metadata"></video></div><p class="amb-handle">@edenedwards</p></a>
-        <a class="amb" href="https://instagram.com/tayboooooooo/" target="_blank" rel="noopener"><div class="amb-photo"><video src="images/ambassadors/tayboooooooo.mp4" poster="images/ambassadors/tayboooooooo.jpg" autoplay muted loop playsinline preload="metadata"></video></div><p class="amb-handle">@tayboooooooo</p></a>
+        <a class="amb" href="https://instagram.com/rosiejaffurs/" target="_blank" rel="noopener"><div class="amb-photo"><video src="images/ambassadors/rosiejaffurs.mp4" poster="images/ambassadors/rosiejaffurs.jpg" muted loop playsinline preload="metadata"></video></div><p class="amb-handle">@rosiejaffurs</p></a>
+        <a class="amb" href="https://www.instagram.com/brooklynhawaii" target="_blank" rel="noopener"><div class="amb-photo"><video src="images/ambassadors/brooklynhawaii.mp4" poster="images/ambassadors/brooklynhawaii.jpg" muted loop playsinline preload="metadata"></video></div><p class="amb-handle">@brooklynhawaii</p></a>
+        <a class="amb" href="https://instagram.com/jomaebueza/" target="_blank" rel="noopener"><div class="amb-photo"><video src="images/ambassadors/jomaebueza.mp4" poster="images/ambassadors/jomaebueza.jpg" muted loop playsinline preload="metadata"></video></div><p class="amb-handle">@jomaebueza</p></a>
+        <a class="amb" href="https://instagram.com/edenedwards/" target="_blank" rel="noopener"><div class="amb-photo"><video src="images/ambassadors/edenedwards.mp4" poster="images/ambassadors/edenedwards.jpg" muted loop playsinline preload="metadata"></video></div><p class="amb-handle">@edenedwards</p></a>
+        <a class="amb" href="https://instagram.com/tayboooooooo/" target="_blank" rel="noopener"><div class="amb-photo"><video src="images/ambassadors/tayboooooooo.mp4" poster="images/ambassadors/tayboooooooo.jpg" muted loop playsinline preload="metadata"></video></div><p class="amb-handle">@tayboooooooo</p></a>
       </div>
     </div>
     <a class="amb-cta r" href="https://instagram.com/anyarvo__" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.6" cy="6.4" r="1.1" fill="currentColor" stroke="none"/></svg><span>Follow the days on Instagram</span><span class="amb-cta-handle">@anyarvo__</span></a>
@@ -457,11 +457,21 @@
   menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{menu.classList.remove('open');burger.classList.remove('open');burger.setAttribute('aria-expanded','false')}));
   const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.16});
   document.querySelectorAll('.r,.prod').forEach(el=>io.observe(el));
-  // Ambassadors: static grid — coax the muted videos to autoplay (esp. mobile Safari)
-  (function(){const vids=document.querySelectorAll('#ambTrack video');if(!vids.length)return;
+  // Ambassadors: play only the on-screen muted videos (mobile Safari allows 1 inline video far more reliably than 5)
+  (function(){const vids=[...document.querySelectorAll('#ambTrack video')];if(!vids.length)return;
+    const visible=new Set();
     const play=v=>{v.muted=true;v.setAttribute('muted','');const p=v.play();if(p&&p.catch)p.catch(()=>{})};
-    vids.forEach(v=>{try{v.preload='auto'}catch(e){}play(v);['loadeddata','canplay','canplaythrough'].forEach(ev=>v.addEventListener(ev,()=>play(v)))});
-    if('IntersectionObserver'in window){const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)play(e.target)}),{threshold:.2});vids.forEach(v=>io.observe(v))}
+    vids.forEach(v=>{try{v.preload='auto'}catch(e){}});
+    if('IntersectionObserver'in window){
+      const io=new IntersectionObserver(es=>es.forEach(e=>{
+        if(e.isIntersecting){visible.add(e.target);play(e.target)}else{visible.delete(e.target);e.target.pause()}
+      }),{threshold:.25});
+      vids.forEach(v=>io.observe(v));
+    }else{vids.forEach(v=>{visible.add(v);play(v)})}
+    vids.forEach(v=>['loadeddata','canplay'].forEach(ev=>v.addEventListener(ev,()=>{if(visible.has(v))play(v)})));
+    // Unlock playback on first user gesture (some in-app browsers block autoplay until then)
+    const unlock=()=>visible.forEach(play);
+    ['touchstart','pointerdown','scroll','click'].forEach(ev=>window.addEventListener(ev,unlock,{once:true,passive:true}));
   })();
   // Contact form: AJAX submit to Web3Forms, inline status (no page reload)
   (function(){const cf=document.getElementById('contactForm');if(!cf)return;const status=document.getElementById('cfStatus'),btn=cf.querySelector('.cf-submit');
