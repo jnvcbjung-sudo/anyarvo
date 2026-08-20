@@ -66,7 +66,7 @@
   .hero-bg{position:absolute;inset:0;z-index:0;background:url(images/hero.jpg) center 60%/cover no-repeat;background-color:#CDA576}
   .hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(68,59,49,.24) 0%,transparent 34%,transparent 50%,rgba(68,59,49,.5) 100%)}
   .hero-inner{position:relative;z-index:2;width:100%;padding:0 clamp(22px,5vw,64px);color:#fff}
-  .hero-tag{font-size:11px;letter-spacing:.32em;text-transform:uppercase;margin-bottom:clamp(20px,3vh,32px)}
+  .hero-tag{font-size:15.5px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:clamp(20px,3vh,32px)}
   .js .hero-tag{opacity:0;animation:fade 1.2s var(--ease) .3s forwards}
   .hero h1{font-weight:400;font-size:clamp(40px,7.2vw,98px);line-height:1.02;letter-spacing:-.025em}
   .hero h1 span{display:block}
@@ -86,7 +86,6 @@
   .kicker::before{content:"";width:30px;height:1px;background:var(--deepgold)}
 
   /* Story */
-  #story{border-top:1px solid var(--line)}
   .lede{font-weight:300;font-size:clamp(27px,4.4vw,56px);line-height:1.26;letter-spacing:-.015em;max-width:22ch;margin-bottom:clamp(36px,5vh,64px)}
   .lede em{font-style:italic;color:var(--deepgold)}
   .story-cols{display:grid;grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr);gap:clamp(38px,6vw,96px)}
@@ -98,7 +97,7 @@
   .story-body p:last-child{margin-bottom:0}
 
   /* Ambassadors */
-  #ambassadors{border-top:1px solid var(--line)}
+  #ambassadors{background:var(--panel)}
   .amb-intro{font-weight:300;font-size:clamp(22px,3.2vw,38px);line-height:1.3;letter-spacing:-.01em;max-width:26ch;margin-bottom:clamp(32px,5vh,56px)}
   .amb-marquee{position:relative}
   .amb-track{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:clamp(12px,1.6vw,22px)}
@@ -122,9 +121,7 @@
   .amb-note{margin-top:clamp(40px,6vh,64px);font-size:12px;letter-spacing:.04em;color:var(--muted);border-top:1px solid var(--line);padding-top:24px}
 
   /* Products */
-  #products{border-top:1px solid var(--line)}
-  .prod{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);border-top:1px solid var(--line);min-height:76vh}
-  #products .prod:first-of-type{border-top:none}
+  .prod{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);min-height:76vh}
   @media(max-width:820px){.prod{grid-template-columns:1fr;min-height:0}}
   .prod .visual{position:relative;overflow:hidden;min-height:360px}
   .prod .visual .field{position:absolute;inset:0;transform:scale(1.08);transition:transform 1.5s var(--ease)}
@@ -151,7 +148,7 @@
   .prod.sand .visual .lbl{color:rgba(68,59,49,.5)}
   .prod.terra .visual .lbl{color:rgba(255,255,255,.75)}
 
-  .band{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--panel)}
+  .band{background:var(--panel)}
   .band .wrap{padding-top:30px;padding-bottom:30px;display:flex;flex-wrap:wrap;gap:8px 40px;align-items:baseline}
   .band b{font-size:11px;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:var(--deepgold)}
   .band span{font-size:13.5px;color:var(--soft)}
@@ -166,10 +163,10 @@
   .step p{font-size:13.5px;color:var(--soft)}
 
   /* Shop */
-  #shop{border-top:1px solid var(--line)}
+  #shop{background:var(--panel)}
   .shop-lead{font-weight:300;font-size:clamp(26px,4vw,48px);letter-spacing:-.02em;line-height:1.15;max-width:18ch;margin-bottom:clamp(28px,4.5vh,52px)}
-  .shop-list{list-style:none;border-top:1px solid var(--line)}
-  .shop-list>li>a,.shop-list>li>.soon{display:flex;align-items:baseline;justify-content:space-between;gap:20px;padding:clamp(22px,3.2vh,32px) 4px;border-bottom:1px solid var(--line);text-decoration:none;color:var(--ink);transition:padding-left .4s var(--ease)}
+  .shop-list{list-style:none}
+  .shop-list>li>a,.shop-list>li>.soon{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:clamp(22px,3.2vh,32px) 4px;text-decoration:none;color:var(--ink);transition:padding-left .4s var(--ease)}
   .shop-list>li>a:hover{padding-left:22px}
   .shop-list>li>a:hover .s-name{color:var(--deepgold)}
   .s-name{font-weight:400;text-transform:uppercase;letter-spacing:.01em;font-size:clamp(22px,3.2vw,40px);transition:color .3s}
@@ -179,9 +176,11 @@
   .shop-list .soon{cursor:default;opacity:.4}
   .shop-list .soon .s-arrow{font-size:11px;letter-spacing:.22em;text-transform:uppercase}
   .shopee-countries{padding:20px 4px 8px;display:flex;flex-wrap:wrap;gap:10px 12px;border-bottom:1px solid var(--line)}
-  .shopee-countries a{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);text-decoration:none;border:1px solid var(--line);border-radius:20px;padding:7px 15px;transition:.25s}
-  .shopee-countries a:hover{border-color:var(--deepgold);color:var(--deepgold)}
-  .shopee-head{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:clamp(22px,3.2vh,32px) 4px}
+  .shopee-countries a{display:inline-flex;align-items:center;text-decoration:none;border:1px solid var(--line);border-radius:6px;padding:6px 10px;transition:.25s}
+  .shopee-countries a img{height:20px;width:auto;display:block;border-radius:2px}
+  .shopee-countries a:hover{border-color:var(--deepgold)}
+  .shopee-head{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:clamp(22px,3.2vh,32px) 4px;transition:padding-left .4s var(--ease)}
+  .shopee-head:hover{padding-left:22px}
   .s-logo{display:inline-flex;align-items:center;color:var(--ink);transition:color .3s}
   .s-logo svg{height:clamp(30px,4.4vw,46px);width:auto;display:block}
   .s-logo.shopee-logo svg{height:clamp(40px,5.8vw,60px)}
@@ -189,7 +188,6 @@
   .shopee-head:hover .s-logo{color:var(--deepgold)}
 
   /* Contact */
-  #contact{border-top:1px solid var(--line)}
   .contact-lead{color:var(--soft);max-width:44ch;font-size:16px}
   .mail{display:inline-block;margin-top:clamp(28px,5vh,48px);font-weight:300;letter-spacing:-.02em;font-size:clamp(26px,4.6vw,56px);color:var(--ink);text-decoration:none;line-height:1.15;border-bottom:1px solid var(--gold);padding-bottom:6px;transition:color .3s}
   .mail:hover{color:var(--deepgold)}
@@ -199,7 +197,7 @@
   .cf-field{flex:1;margin-bottom:26px}
   .cf-field label{display:block;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:9px}
   .cf-field input,.cf-field textarea{width:100%;background:transparent;border:0;border-bottom:1px solid var(--line);padding:8px 2px;font-family:inherit;font-size:16px;font-weight:300;color:var(--ink);transition:border-color .3s}
-  .cf-field textarea{resize:vertical;min-height:96px;line-height:1.6}
+  .cf-field textarea{resize:none;overflow:hidden;line-height:1.6}
   .cf-field input:focus,.cf-field textarea:focus{outline:none;border-color:var(--deepgold)}
   .cf-hp{position:absolute!important;left:-9999px;width:0;height:0;opacity:0}
   .cf-submit{margin-top:8px;background:transparent;border:1px solid var(--line);border-radius:30px;padding:13px 28px;font-family:inherit;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);cursor:pointer;transition:border-color .3s,color .3s}
@@ -216,7 +214,7 @@
   .faq dt{font-size:13px;font-weight:500;color:var(--ink);margin-bottom:8px}
   .faq dd{font-size:13.5px;color:var(--soft)}
 
-  footer{border-top:1px solid var(--line);overflow:hidden;background:var(--panel)}
+  footer{overflow:hidden;background:var(--panel)}
   .f-top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px 24px;padding:32px clamp(22px,5vw,64px)}
   .f-copy{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
   .f-social{display:inline-flex;align-items:center;gap:12px}
@@ -256,9 +254,9 @@
 <section class="hero" id="top">
   <div class="hero-bg"></div>
   <div class="hero-inner">
-    <p class="hero-tag">Sunscreen built for outdoor sports</p>
-    <h1><span>Keep on</span><span>the <em>sunny</em> side.</span></h1>
-    <p class="hero-sub">Blazing sun, hours of sweat, whatever your sport. ANYARVO holds its grip — so you can stay out in the light.</p>
+    <p class="hero-tag">SUNSCREEN BUILT FOR OUTDOOR SPORTS</p>
+    <h1><span>Keep on</span><span>the sunny side.</span></h1>
+    <p class="hero-sub">Blazing sun, hours of sweat, whatever your sport. ANYARVO keeps up — so you can stay out longer.</p>
   </div>
   <span class="cue" aria-hidden="true"></span>
 </section>
@@ -266,17 +264,13 @@
 <!-- STORY -->
 <section class="section" id="story">
   <div class="wrap">
-    <p class="lede r">They say the sun is something to avoid.<br>We think it's a backdrop <em>to enjoy.</em></p>
-    <div class="story-cols">
-      <div class="name-origin r">
-        <p>"Arvo" is Australian slang for afternoon. We named ourselves for the hottest hour of the day — 2 p.m. — because we believe even that moment should be one of your brightest.</p>
-        <p class="tag">Any Arvo · Any Afternoon</p>
-      </div>
-      <div class="story-body r">
-        <p>Most sun care treats daylight as the enemy — the cause of spots and ageing, a thing to escape. <strong>We saw it differently.</strong> Sunlight isn't something to run from; it's the beautiful backdrop to a life lived fully, out in the open. So we set out to make sun care for the people who don't come indoors early — the ones who live for the session.</p>
-        <p>That meant getting the fundamentals right and then some. Real protection, SPF50+ PA++++, with a grip that holds through sweat and long hours outside — and a feel light enough that reapplying becomes a pleasure, not a chore. We built it in three finishes, so it fits your skin, your sport, and your day: <strong>Breeze, Sand, and Terra.</strong></p>
-        <p>And because we want these days to last, we made choices that respect the places they happen — reef-friendly formulas for the water you swim over, and care for the coast and the outdoors we all share. <strong>Leave the sun worry to us. You just keep on the sunny side.</strong></p>
-      </div>
+    <p class="lede r">They say the sun is something to avoid.<br>We say it's where life happens.</p>
+    <div class="story-body r">
+      <p>"Arvo" is Australian slang for afternoon. We named ourselves for those bright, sun-soaked hours — because we believe they should be some of your best.</p>
+      <p>Born in Seoul, ANYARVO is sun care for people who live for the session.</p>
+      <p>Protection you can count on: SPF50+ PA++++, made to stay put through sweat and long hours outside, with a feel light enough that reapplying never feels like a chore.</p>
+      <p>Three finishes — Breeze, Sand, and Terra — for your skin, your sport, and your day.</p>
+      <p>Keep on the sunny side.</p>
     </div>
   </div>
 </section>
@@ -284,7 +278,7 @@
 <!-- AMBASSADORS -->
 <section class="section" id="ambassadors">
   <div class="wrap">
-    <p class="amb-intro r">The people who live in the light — and make ANYARVO part of how they move through their days.</p>
+    <p class="amb-intro r">Meet the people who keep moving — in the sun, with ANYARVO.</p>
     <div class="amb-marquee r">
       <div class="amb-track" id="ambTrack">
         <!-- AMBASSADOR TEMPLATE — one block per person (order = display order):
@@ -300,7 +294,7 @@
         <a class="amb" href="https://instagram.com/tayboooooooo/" target="_blank" rel="noopener"><div class="amb-photo"><video src="images/ambassadors/tayboooooooo.mp4" poster="images/ambassadors/tayboooooooo.jpg" autoplay muted loop playsinline preload="auto"></video></div><p class="amb-handle">@tayboooooooo</p></a>
       </div>
     </div>
-    <a class="amb-cta r" href="https://instagram.com/anyarvo__" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.6" cy="6.4" r="1.1" fill="currentColor" stroke="none"/></svg><span>Follow the days on Instagram</span><span class="amb-cta-handle">@anyarvo__</span></a>
+    <a class="amb-cta r" href="https://instagram.com/anyarvo__" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.6" cy="6.4" r="1.1" fill="currentColor" stroke="none"/></svg><span>Follow ANYARVO on Instagram.</span></a>
   </div>
 </section>
 
@@ -308,14 +302,13 @@
 <section id="products">
   <div class="section" style="padding-bottom:clamp(30px,5vh,50px)">
     <div class="wrap">
-      <p class="lede r" style="margin-bottom:0">Three shades.<br>Find <em>your</em> finish.</p>
+      <p class="lede r" style="margin-bottom:0">Three shades.<br>Find your finish.</p>
     </div>
   </div>
 
   <article class="prod breeze r">
     <div class="visual"><div class="field"></div></div>
     <div class="info">
-      <p class="p-num">No. 01</p>
       <h3 class="p-name">Breeze</h3>
       <p class="p-shade">Clear · 20.5g</p>
       <p class="p-lead">A non-sticky, powdery finish — fresh and light, no oil worries.</p>
@@ -331,7 +324,6 @@
   <article class="prod sand r">
     <div class="visual"><div class="field"></div></div>
     <div class="info">
-      <p class="p-num">No. 02</p>
       <h3 class="p-name">Sand</h3>
       <p class="p-shade">No.22 · 24g</p>
       <p class="p-lead">The natural glow you won't sacrifice — even under the blazing sun.</p>
@@ -347,7 +339,6 @@
   <article class="prod terra r">
     <div class="visual"><div class="field"></div></div>
     <div class="info">
-      <p class="p-num">No. 03</p>
       <h3 class="p-name">Terra</h3>
       <p class="p-shade">No.26-7 · 24g</p>
       <p class="p-lead">The perfect color for sun-kissed, tanned skin.</p>
@@ -372,21 +363,21 @@
 <!-- SHOP -->
 <section class="section" id="shop">
   <div class="wrap">
-    <p class="shop-lead r">Find ANYARVO wherever you shop.</p>
+    <p class="shop-lead r">Find ANYARVO where you are.</p>
     <ul class="shop-list r">
       <li>
         <div class="shopee-head"><span class="s-logo shopee-logo" aria-label="Shopee"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10,15 h20 l-1.4,18.5 a2.2,2.2 0 0 1 -2.2,2 h-10.8 a2.2,2.2 0 0 1 -2.2,-2 Z"/><path d="M15.5,15.5 v-2.5 a4.5,4.5 0 0 1 9,0 v2.5"/><path d="M23,22.5 a3.2,2.6 0 0 0 -6,0.6 c0,3 6,1.9 6,5 a3.2,2.6 0 0 1 -6,0.3"/></svg></span><span class="s-meta">Shop Worldwide</span></div>
         <div class="shopee-countries">
-          <a href="https://bit.ly/4hoAoLu" target="_blank" rel="noopener">Malaysia</a>
-          <a href="https://bit.ly/3Tg7FP2" target="_blank" rel="noopener">Philippines</a>
-          <a href="https://bit.ly/3TKr7DE" target="_blank" rel="noopener">Singapore</a>
-          <a href="https://bit.ly/3TKr9eK" target="_blank" rel="noopener">Taiwan</a>
-          <a href="https://bit.ly/4pwbxr2" target="_blank" rel="noopener">Vietnam</a>
-          <a href="https://bit.ly/4wlDW68" target="_blank" rel="noopener">Brazil</a>
-          <a href="https://bit.ly/4wgPEij" target="_blank" rel="noopener">Mexico</a>
+          <a href="https://bit.ly/4hoAoLu" target="_blank" rel="noopener" aria-label="Malaysia" title="Malaysia"><img src="images/flags/my.png" alt="Malaysia" loading="lazy"></a>
+          <a href="https://bit.ly/3Tg7FP2" target="_blank" rel="noopener" aria-label="Philippines" title="Philippines"><img src="images/flags/ph.png" alt="Philippines" loading="lazy"></a>
+          <a href="https://bit.ly/3TKr7DE" target="_blank" rel="noopener" aria-label="Singapore" title="Singapore"><img src="images/flags/sg.png" alt="Singapore" loading="lazy"></a>
+          <a href="https://bit.ly/3TKr9eK" target="_blank" rel="noopener" aria-label="Taiwan" title="Taiwan"><img src="images/flags/tw.png" alt="Taiwan" loading="lazy"></a>
+          <a href="https://bit.ly/4pwbxr2" target="_blank" rel="noopener" aria-label="Vietnam" title="Vietnam"><img src="images/flags/vn.png" alt="Vietnam" loading="lazy"></a>
+          <a href="https://bit.ly/4wlDW68" target="_blank" rel="noopener" aria-label="Brazil" title="Brazil"><img src="images/flags/br.png" alt="Brazil" loading="lazy"></a>
+          <a href="https://bit.ly/4wgPEij" target="_blank" rel="noopener" aria-label="Mexico" title="Mexico"><img src="images/flags/mx.png" alt="Mexico" loading="lazy"></a>
         </div>
       </li>
-      <li><a href="https://smartstore.naver.com/anyarvo/products/13563599678" target="_blank" rel="noopener"><span class="s-logo" aria-label="Naver Smart Store"><svg viewBox="0 0 40 40" fill="none"><rect x="1.6" y="1.6" width="36.8" height="36.8" rx="9" stroke="currentColor" stroke-width="2"/><path d="M11,11 h5 l9,11 V11 h5 v18 h-5 l-9,-11 V29 h-5 Z" fill="currentColor"/></svg></span><span class="s-meta">Shop Korea</span><span class="s-arrow">↗</span></a></li>
+      <li><a href="https://smartstore.naver.com/anyarvo/products/13563599678" target="_blank" rel="noopener"><span class="s-logo" aria-label="Naver Smart Store"><svg viewBox="0 0 40 40" fill="none"><rect x="1.6" y="1.6" width="36.8" height="36.8" rx="9" stroke="currentColor" stroke-width="2"/><path d="M11,11 h5 l9,11 V11 h5 v18 h-5 l-9,-11 V29 h-5 Z" fill="currentColor"/></svg></span><span class="s-meta">Shop Korea</span></a></li>
     </ul>
   </div>
 </section>
@@ -394,7 +385,7 @@
 <!-- CONTACT -->
 <section class="section" id="contact">
   <div class="wrap">
-    <p class="contact-lead r">Questions about shades, shipping or stockists — or wholesale and press. Write to us and we'll get back to you.</p>
+    <p class="contact-lead r">Questions about shades, shipping, stockists, wholesale, or press? Drop us a line.</p>
     <form class="contact-form r" id="contactForm" novalidate>
       <!-- Web3Forms access key for jnv.main@gmail.com goes in value="" below -->
       <input type="hidden" name="access_key" value="b78db935-80db-432f-8d05-550679562a61">
@@ -413,7 +404,7 @@
       </div>
       <div class="cf-field">
         <label for="cf-message">Message</label>
-        <textarea id="cf-message" name="message" rows="4" required></textarea>
+        <textarea id="cf-message" name="message" rows="1" required></textarea>
       </div>
       <button type="submit" class="cf-submit">Send message <span aria-hidden="true">↗</span></button>
       <p class="cf-status" id="cfStatus" role="status" aria-live="polite"></p>
@@ -454,6 +445,8 @@
     let last=0;const onInteract=()=>{const n=Date.now();if(n-last<400)return;last=n;visible.forEach(play)};
     ['touchstart','touchmove','pointerdown','scroll','click'].forEach(ev=>window.addEventListener(ev,onInteract,{passive:true}));
   })();
+  // Message field: start at one line, grow downward as the visitor types
+  (function(){const t=document.getElementById('cf-message');if(!t)return;const grow=()=>{t.style.height='auto';t.style.height=t.scrollHeight+'px'};t.addEventListener('input',grow);if(t.form)t.form.addEventListener('reset',()=>setTimeout(grow));grow();})();
   // Contact form: AJAX submit to Web3Forms, inline status (no page reload)
   (function(){const cf=document.getElementById('contactForm');if(!cf)return;const status=document.getElementById('cfStatus'),btn=cf.querySelector('.cf-submit');
     cf.addEventListener('submit',async e=>{e.preventDefault();
